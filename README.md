@@ -16,7 +16,7 @@ pip install -r requirements.txt
 
 ## Playing a game
 
-To start playing a game, we need to implement [_agents_](agents/agent.py). For example, to play the game using two random agents (agents which take a random action), run the following:
+To start playing a game, we need to use [_agents_](agents/agent.py). For example, to play the game using two random agents (agents which take a random action), run the following:
 
 ```bash
 python simulator.py --player_1 random_agent --player_2 random_agent
@@ -55,24 +55,18 @@ During autoplay, boards are drawn randomly between size `--board_size_min` and `
 - Not all agents supports autoplay. The variable `self.autoplay` in [Agent](agents/agent.py) can be set to `True` to allow the agent to be autoplayed. Typically this flag is set to false for a `human_agent`.
 - UI display will be disabled in an autoplay.
 
-## Write your own agent
+## AI agent
 
-You need to write your own agent and submit it for the class project. To do so: 
-
-1. Modify the [`student_agent.py`](agents/student_agent.py) file in [`agents/`](agents/) directory, which extends the [`agents.Agent`](agents/agent.py) class. 
-2. Implement the `step` function with your game logic
-3. Register your agent using the decorator [`register_agent`](agents/random_agent.py#L7). The `StudentAgent` class is already decorated with `student_agent` name, feel free to change it or keep it the same.
-4. [This step is already done for `StudentAgent`] Import your agent in the [`__init__.py`](agents/__init__.py) file in [`agents/`](agents/) directory
-5. Run and test your agent using the information above
+I implemented the [`ai_agent.py`](agents/ai_agent.py) file in [`agents/`](agents/) directory (which extends the [`agents.Agent`](agents/agent.py) class) using a Monte-Carlo tree search algorithm. The agent can be tested using the information below
 
     ```
-    python simulator.py --player_1 random_agent --player_2 student_agent --display 
+    python simulator.py --player_1 random_agent --player_2 ai_agent --display 
     ```
 
-6. Check autoplay with your agent and `random_agent` is working
+It is possible to autoplay as follows:
 
     ```
-    python simulator.py --player_1 random_agent --player_2 student_agent --autoplay
+    python simulator.py --player_1 random_agent --player_2 ai_agent --autoplay
     ```
 
 ## Full API
@@ -128,14 +122,6 @@ Here we show a gameplay describing a $`2`$-player game on a $`5\times 5`$ chessb
 </p>
 
 The final score is $`A:B = 15:10`$. So A wins the game.
-
-## Issues? Bugs? Questions?
-
-Feel free to open an issue in this repository, or contact us in Ed thread.
-
-## About
-
-This is a class project for COMP 424, McGill University, Winter 2022.
 
 ## License
 

@@ -28,7 +28,7 @@ class AIAgent(Agent):
     
     def __init__(self):
         super(AIAgent, self).__init__()
-        self.name = "Dumbest Agent"
+        self.name = "AI Agent"
         self.dir_map = {
             "u": 0,
             "r": 1,

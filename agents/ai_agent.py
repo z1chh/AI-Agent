@@ -1,19 +1,34 @@
-# Student agent: Add your own agent here
+# Name    : HU, Zi Chen
+# GitHub  : https://github.com/z1chh
+
+# My AI Agent
+from __future__ import annotations
+
 from agents.agent import Agent
 from store import register_agent
 import sys
+
+from copy import deepcopy
+import numpy as np
+import math
+
+from agents.monte_carlo.MCTNode import Node # agents.
+from agents.monte_carlo.MCTree import Tree # agents.
+from agents.monte_carlo.GameState import State # agents.
+
 
 
 @register_agent("ai_agent")
 class AIAgent(Agent):
     """
-    A dummy class for your implementation. Feel free to use this class to
-    add any helper functionalities needed for your agent.
+    AI agent.
+    Uses MCTS to compute best move.
     """
 
+    
     def __init__(self):
-        super(StudentAgent, self).__init__()
-        self.name = "StudentAgent"
+        super(AIAgent, self).__init__()
+        self.name = "Dumbest Agent"
         self.dir_map = {
             "u": 0,
             "r": 1,
@@ -21,20 +36,38 @@ class AIAgent(Agent):
             "l": 3,
         }
 
+
+    # Compute the next step
     def step(self, chess_board, my_pos, adv_pos, max_step):
-        """
-        Implement the step function of your agent here.
-        You can use the following variables to access the chess board:
-        - chess_board: a numpy array of shape (x_max, y_max, 4)
-        - my_pos: a tuple of (x, y)
-        - adv_pos: a tuple of (x, y)
-        - max_step: an integer
-
-        You should return a tuple of ((x, y), dir),
-        where (x, y) is the next position of your agent and dir is the direction of the wall
-        you want to put on.
-
-        Please check the sample implementation in agents/random_agent.py or agents/human_agent.py for more details.
-        """
-        # dummy return
-        return my_pos, self.dir_map["u"]
+        # Create MCT
+        state = State(chess_board, my_pos, adv_pos, max_step)
+        node = Node(state, None, True)
+        mct = Tree(node)
+        
+        return mct.execute(1.95, math.sqrt(2))
+    
+        # Dead code
+        #same_time = True
+        
+        # MCTS with time = 1.95 everytime.
+        #if(same_time):
+        #    return mct.execute(1.95, math.sqrt(2))
+        
+        # MCTS with time constraint reduced if board is bigger.
+        #size = len(chess_board)
+        # Perform search and return results
+        #if size < 7:
+        #    return mct.execute(1.94, math.sqrt(2))
+        #elif size == 7:
+        #    return mct.execute(1.88, math.sqrt(2))
+        #elif size == 8:
+        #    return mct.execute(1.82, math.sqrt(2))
+        #elif size == 9:
+        #    return mct.execute(1.74, math.sqrt(2))
+        #elif size == 10:
+        #    return mct.execute(1.68, math.sqrt(2))
+        #elif size == 11:
+        #    return mct.execute(1.66, math.sqrt(2))
+        #else:
+        #    return mct.execute(1.64, math.sqrt(2))
+    

@@ -4,8 +4,8 @@ from store import register_agent
 import sys
 
 
-@register_agent("student_agent")
-class StudentAgent(Agent):
+@register_agent("ai_agent")
+class AIAgent(Agent):
     """
     A dummy class for your implementation. Feel free to use this class to
     add any helper functionalities needed for your agent.

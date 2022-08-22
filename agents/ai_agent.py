@@ -44,6 +44,8 @@ class AIAgent(Agent):
         node = Node(state, None, True)
         mct = Tree(node)
         
+        # The first explicit parameter corresponds to the time the agent has to compute the next move.
+        # The second explicit parameter corresponds to the scaling constant.
         return mct.execute(1.95, math.sqrt(2))
     
         # Dead code

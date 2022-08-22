@@ -10,7 +10,6 @@ class Tree():
     '''
     Represents a MCT.
     
-    If it was Java the only public method would be execute but I'm dumb.
     Runs simulations for time_to_run (default value 1.95sec).
     UCT uses scaling_constant (default value math.sqrt(2)).
     '''
